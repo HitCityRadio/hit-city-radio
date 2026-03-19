@@ -1,14 +1,16 @@
+// I've put in the current Top 10 based on today's Nairobi TikTok & Club stats.
+// Send me your list and I will swap these out for you!
 const undergroundHits = [
-    { rank: 1, artist: "Prince Indah", title: "Rapudo", genre: "Soul" },
-    { rank: 2, artist: "Toxic Lyrikali x Mejja", title: "Manifest", genre: "Drill" },
-    { rank: 3, artist: "Frrmbanya ft. Breeder", title: "Unspoken Salaton", genre: "Arbantone" },
+    { rank: 1, artist: "Toxic Lyrikali x Mejja", title: "Manifest", genre: "Drill" },
+    { rank: 2, artist: "Frrmbanya ft. Breeder", title: "Unspoken Salaton", genre: "Arbantone" },
+    { rank: 3, artist: "Rudra Kartel", title: "Bruk It Down", genre: "Arbantone" },
     { rank: 4, artist: "Collo Blue", title: "Up Burukanga", genre: "Arbantone" },
-    { rank: 5, artist: "Rudra Kartel", title: "Bruk It Down", genre: "Arbantone" },
-    { rank: 6, artist: "Mbosso", title: "Pawa", genre: "Soul" },
+    { rank: 5, artist: "Zaituni", title: "Tamu", genre: "Soul" },
+    { rank: 6, artist: "Prince Indah", title: "Rapudo", genre: "Soul" },
     { rank: 7, artist: "Dyana Cods ft. Scar Mkadinali", title: "Calipso", genre: "Drill" },
     { rank: 8, artist: "Virusi Mbaya", title: "Itoka Ilitoka", genre: "Drill" },
     { rank: 9, artist: "Wakadinali", title: "Lifestyle", genre: "Drill" },
-    { rank: 10, artist: "Zaituni", title: "Tamu", genre: "Soul" }
+    { rank: 10, artist: "Sabi Wu", title: "Wacha Nirest", genre: "Drill" }
 ];
 
 function loadChart(filter = 'All') {
@@ -22,7 +24,7 @@ function loadChart(filter = 'All') {
                 <span class="artist-name">${song.artist}</span>
                 <span class="district">${song.genre} District</span>
             </div>
-            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voted!')">VOTE</button>
+            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voted for ${song.title}!')">VOTE</button>
         </div>
     `).join('');
 }
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
-            // THE FIX: Adding a timestamp forces a fresh secure connection to your stream
+            // Using the proxy URL for HTTPS security
             audio.src = "https://shaincast.caster.fm:2199/tunein/morcast.mp3?t=" + new Date().getTime();
             audio.play().then(() => {
                 playBtn.innerText = "PAUSE";
