@@ -22,7 +22,7 @@ function loadChart(filter = 'All') {
                 <span class="artist-name">${song.artist}</span>
                 <span class="district">${song.genre} District</span>
             </div>
-            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voted for ${song.title}!')">VOTE</button>
+            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voting for ${song.title}!')">VOTE</button>
         </div>
     `).join('');
 }
@@ -37,24 +37,30 @@ document.addEventListener('DOMContentLoaded', () => {
     loadChart();
     const audio = document.getElementById('mainPlayer');
     const playBtn = document.getElementById('playPauseBtn');
+    const statusText = document.getElementById('trackTitle');
+
+    // The stream URL - Caster.fm Free requires this specific port/path
+    const STREAM_URL = "https://shaincast.caster.fm:2199/tunein/morcast.mp3";
 
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
-            // Updated secure link with cache-buster to prevent silence
-            const streamUrl = "https://shaincast.caster.fm:2199/tunein/morcast.mp3?t=" + new Date().getTime();
-            audio.src = streamUrl;
+            // Add timestamp to prevent "silent" cached stream
+            audio.src = STREAM_URL + "?t=" + new Date().getTime();
+            statusText.innerText = "CONNECTING...";
             
             audio.play().then(() => {
                 playBtn.innerText = "PAUSE";
+                statusText.innerText = "MORCAST LIVE 🔊";
                 playBtn.style.background = "#222";
             }).catch(e => {
-                console.error("Playback failed", e);
-                alert("Station is Offline or signal is blocked. Check Caster.fm Dashboard!");
+                statusText.innerText = "OFFLINE";
+                alert("Station is Offline. Make sure your Caster.fm Dashboard is 'Online' and you are broadcasting!");
             });
         } else {
             audio.pause();
             audio.src = ""; 
             playBtn.innerText = "LISTEN LIVE";
+            statusText.innerText = "MORCAST STANDBY";
             playBtn.style.background = "#E63946";
         }
     });
