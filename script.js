@@ -13,10 +13,8 @@ const undergroundHits = [
 
 function loadChart(filter = 'All') {
     const list = document.getElementById('chartList');
-    if (!list) {
-        console.error("Error: Could not find chartList div!");
-        return;
-    }
+    if (!list) return;
+
     const filtered = filter === 'All' ? undergroundHits : undergroundHits.filter(s => s.genre === filter);
     
     list.innerHTML = filtered.map(song => `
@@ -26,7 +24,7 @@ function loadChart(filter = 'All') {
                 <span class="artist-name">${song.artist}</span>
                 <span class="district">${song.genre} District</span>
             </div>
-            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voted for ${song.title}!')">VOTE</button>
+            <button class="nav-btn" style="color:white; font-size:10px;">VOTE</button>
         </div>
     `).join('');
 }
@@ -37,9 +35,10 @@ function filterGenre(genre, btn) {
     loadChart(genre);
 }
 
-// THIS PART RUNS AS SOON AS THE PAGE LOADS
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize
+window.addEventListener('load', () => {
     loadChart();
+    
     const audio = document.getElementById('mainPlayer');
     const playBtn = document.getElementById('playPauseBtn');
 
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             audio.play().then(() => {
                 playBtn.innerText = "PAUSE";
                 document.getElementById('trackTitle').innerText = "MORCAST LIVE";
-            }).catch(() => alert("Stream Offline. Start Caster.fm!"));
+            }).catch(() => alert("Stream Offline. Start your Broadcaster app!"));
         } else {
             audio.pause();
             audio.src = "";
