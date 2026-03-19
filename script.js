@@ -1,10 +1,10 @@
-// 1. DATA: The Underground Top 5
+// 1. DATA: The Real Nairobi Street Heat - March 20, 2026
 const undergroundHits = [
-    { rank: 1, artist: "Toxic Lyrikali", title: "Backbencher", area: "Drill District" },
-    { rank: 2, artist: "Zaituni", title: "Tamu", area: "Soul Suburb" },
-    { rank: 3, artist: "Frrmbanya", title: "Unspoken", area: "Arbantone" },
-    { rank: 4, artist: "Big Yasa", title: "Ten Plus", area: "Pure Drill energy" },
-    { rank: 5, artist: "MSabi Wu", title: "Wacha Nirest", area: "The current club banger" }
+    { rank: 1, artist: "Toxic Lyrikali x Mejja", title: "Manifest", area: "Drill District" },
+    { rank: 2, artist: "Frrmbanya ft. Breeder", title: "Unspoken Salaton", area: "Arbantone" },
+    { rank: 3, artist: "Rudra Kartel", title: "Bruk It Down", area: "Dancehall Drive" },
+    { rank: 4, artist: "Dyana Cods ft. Scar Mkadinali", title: "Calipso", area: "Bar City" },
+    { rank: 5, artist: "Sabi Wu", title: "Wacha Nirest", area: "Underground" }
 ];
 
 // 2. THE LOADING FUNCTION
@@ -19,12 +19,12 @@ function loadChart() {
                 <span class="artist-name">${song.artist}</span>
                 <span class="district">${song.area}</span>
             </div>
-            <button class="listen-btn" style="padding: 8px 15px; font-size: 11px; background: #222;" onclick="alert('Voting opens soon!')">VOTE</button>
+            <button class="vote-btn" style="padding: 8px 15px; font-size: 11px; background: #222; border: none; color: white; border-radius: 5px; cursor: pointer;" onclick="alert('Voting opens at 8 PM tonight!')">VOTE</button>
         </div>
     `).join('');
 }
 
-// 3. AUDIO LOGIC (Wait for page to load)
+// 3. AUDIO LOGIC
 document.addEventListener('DOMContentLoaded', () => {
     loadChart();
 
@@ -43,7 +43,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 playBtn.style.background = "#E63946";
             }
         });
-    } else {
-        console.error("Missing audio element or play button!");
     }
 });
