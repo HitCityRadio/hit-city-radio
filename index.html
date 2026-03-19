@@ -1,12 +1,41 @@
-<audio id="mainPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
-
-<footer id="player-bar">
-    <div class="np-info">
-        <div class="pulse-icon"></div>
-        <div class="text-group">
-            <span class="label">ON AIR:</span>
-            <span id="trackTitle">Hit City Live Stream</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit City Radio | Top 50</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon"><span class="big-c">C</span><span class="inner-h">H</span></div>
+            <span class="radio-text">radio</span>
         </div>
-    </div>
-    <button class="listen-btn" id="playPauseBtn">LISTEN LIVE</button>
-</footer>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <h1>Top 50 Underground</h1>
+            <p>Nairobi's streets choose the hits.</p>
+        </section>
+        <div class="chart-wrapper" id="chartList">
+            </div>
+    </main>
+
+    <audio id="mainPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+
+    <footer id="player-bar">
+        <div class="np-info">
+            <div class="pulse-icon"></div>
+            <div class="text-group">
+                <span class="label">ON AIR:</span>
+                <span id="trackTitle">Hit City Live</span>
+            </div>
+        </div>
+        <button class="listen-btn" id="playPauseBtn">LISTEN LIVE</button>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
