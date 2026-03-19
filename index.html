@@ -5,36 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hit City Radio | Kenya Underground Top 50</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
         <div class="logo-container">
-            <div class="logo-main">
-                <span class="c-symbol">C</span><span class="h-symbol">H</span>
+            <div class="logo-icon">
+                <span class="big-c">C</span>
+                <span class="inner-h">H</span>
             </div>
             <span class="radio-text">radio</span>
         </div>
-        <div class="header-tag">The Streets Choose the Hits 🏙️</div>
+        <div class="header-tag">Nairobi’s Street Hub 🏙️</div>
     </header>
 
     <main>
         <section class="hero">
             <h1>Top 50 Underground</h1>
-            <p>Scouted by the community. Ranked by you.</p>
+            <p>The City where the streets choose the hits.</p>
         </section>
 
         <div class="chart-wrapper" id="chartList">
             </div>
     </main>
 
+    <audio id="mainPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+
     <footer id="player-bar">
         <div class="np-info">
-            <span class="label">LIVE:</span>
-            <span id="trackTitle">Loading the next hit...</span>
+            <div class="pulse-icon"></div>
+            <div class="text-group">
+                <span class="label">ON AIR:</span>
+                <span id="trackTitle">Hit City Live Stream</span>
+            </div>
         </div>
-        <button class="listen-btn">LISTEN LIVE</button>
-        <audio id="radioStream" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+        <button class="listen-btn" id="playPauseBtn">LISTEN LIVE</button>
     </footer>
 
     <script src="script.js"></script>
