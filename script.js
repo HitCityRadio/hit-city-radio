@@ -4,7 +4,7 @@ const undergroundHits = [
     { rank: 2, artist: "Zaituni", title: "Tamu", area: "Soul Suburb" },
     { rank: 3, artist: "Frrmbanya", title: "Unspoken", area: "Arbantone" },
     { rank: 4, artist: "Big Yasa", title: "Ten Plus", area: "Pure Drill energy" },
-    { rank: 5, artist: "MSabi Wu", title: "Wacha Nirest", area: "AThe current club banger" }
+    { rank: 5, artist: "MSabi Wu", title: "Wacha Nirest", area: "The current club banger" }
 ];
 
 // 2. THE LOADING FUNCTION
