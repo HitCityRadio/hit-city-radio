@@ -10,8 +10,6 @@ const undergroundHits = [
 // 2. THE LOADING FUNCTION
 function loadChart() {
     const list = document.getElementById('chartList');
-    
-    // Safety check: If the list isn't found, stop here
     if (!list) return;
 
     list.innerHTML = undergroundHits.map(song => `
@@ -24,12 +22,9 @@ function loadChart() {
             <button class="listen-btn" style="padding: 8px 15px; font-size: 11px; background: #222;" onclick="alert('Voting opens soon!')">VOTE</button>
         </div>
     `).join('');
-    
-    console.log("Chart Loaded Successfully");
 }
 
-// 3. AUDIO LOGIC
-// We wait for the DOM to be fully loaded before looking for buttons
+// 3. AUDIO LOGIC (Wait for page to load)
 document.addEventListener('DOMContentLoaded', () => {
     loadChart();
 
@@ -48,5 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 playBtn.style.background = "#E63946";
             }
         });
+    } else {
+        console.error("Missing audio element or play button!");
     }
 });
