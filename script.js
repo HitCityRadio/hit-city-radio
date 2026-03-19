@@ -1,46 +1,53 @@
-// 1. DATA: The Real Nairobi Street Heat - March 20, 2026
 const undergroundHits = [
-    { rank: 1, artist: "Toxic Lyrikali x Mejja", title: "Manifest", area: "Drill District" },
-    { rank: 2, artist: "Frrmbanya ft. Breeder", title: "Unspoken Salaton", area: "Arbantone" },
-    { rank: 3, artist: "Rudra Kartel", title: "Bruk It Down", area: "Dancehall Drive" },
-    { rank: 4, artist: "Dyana Cods ft. Scar Mkadinali", title: "Calipso", area: "Bar City" },
-    { rank: 5, artist: "Sabi Wu", title: "Wacha Nirest", area: "Underground" }
+    { rank: 1, artist: "Toxic Lyrikali", title: "Backbencher", genre: "Drill" },
+    { rank: 2, artist: "Zaituni", title: "Tamu", genre: "Soul" },
+    { rank: 3, artist: "Frrmbanya", title: "Unspoken", genre: "Arbantone" },
+    { rank: 4, artist: "Big Yasa", title: "Ten Plus", genre: "Drill" },
+    { rank: 5, artist: "Muthaka", title: "Secret Files", genre: "Soul" },
+    { rank: 6, artist: "Rudra Kartel", title: "Bruk It Down", genre: "Arbantone" },
+    { rank: 7, artist: "Dyana Cods", title: "Calipso", genre: "Drill" },
+    { rank: 8, artist: "Sabi Wu", title: "Wacha Nirest", genre: "Drill" },
+    { rank: 9, artist: "Boutross", title: "Miss Those Days", genre: "Soul" },
+    { rank: 10, artist: "Buruklyn Boyz", title: "Nairobi", genre: "Drill" }
 ];
 
-// 2. THE LOADING FUNCTION
-function loadChart() {
+function loadChart(filter = 'All') {
     const list = document.getElementById('chartList');
     if (!list) return;
 
-    list.innerHTML = undergroundHits.map(song => `
-        <div class="song-card ${song.rank === 1 ? 'top-hit' : ''}">
+    const filtered = filter === 'All' ? undergroundHits : undergroundHits.filter(s => s.genre === filter);
+
+    list.innerHTML = filtered.map(song => `
+        <div class="song-card">
             <div class="song-meta">
                 <span class="song-title">${song.rank}. ${song.title}</span>
                 <span class="artist-name">${song.artist}</span>
-                <span class="district">${song.area}</span>
+                <span class="district">${song.genre} District</span>
             </div>
-            <button class="vote-btn" style="padding: 8px 15px; font-size: 11px; background: #222; border: none; color: white; border-radius: 5px; cursor: pointer;" onclick="alert('Voting opens at 8 PM tonight!')">VOTE</button>
+            <button class="vote-btn" onclick="alert('Voted for ${song.title}!')">VOTE</button>
         </div>
     `).join('');
 }
 
-// 3. AUDIO LOGIC
+function filterGenre(genre) {
+    loadChart(genre);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     loadChart();
-
     const audio = document.getElementById('mainPlayer');
     const playBtn = document.getElementById('playPauseBtn');
 
     if (playBtn && audio) {
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
+                // For Caster.fm Free, we sometimes need to 'kick' the source
+                audio.load(); 
                 audio.play();
                 playBtn.innerText = "PAUSE";
-                playBtn.style.background = "#222";
             } else {
                 audio.pause();
                 playBtn.innerText = "LISTEN LIVE";
-                playBtn.style.background = "#E63946";
             }
         });
     }
