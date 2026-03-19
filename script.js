@@ -3,8 +3,8 @@ const undergroundHits = [
     { rank: 1, artist: "Toxic Lyrikali", title: "Backbencher", area: "Drill District" },
     { rank: 2, artist: "Zaituni", title: "Tamu", area: "Soul Suburb" },
     { rank: 3, artist: "Frrmbanya", title: "Unspoken", area: "Arbantone" },
-    { rank: 4, artist: "Rudra Kartel", title: "Bruk It Down", area: "Dancehall Drive" },
-    { rank: 5, artist: "Muthaka", title: "Secret Files", area: "Alternative Alley" }
+    { rank: 4, artist: "Big Yasa", title: "Ten Plus", area: "Pure Drill energy" },
+    { rank: 5, artist: "MSabi Wu", title: "Wacha Nirest", area: "AThe current club banger" }
 ];
 
 // 2. THE LOADING FUNCTION
