@@ -14,39 +14,40 @@
             <span class="radio-text">radio</span>
         </div>
         <nav class="genre-nav">
-            <button onclick="filterGenre('All')">All</button>
-            <button onclick="filterGenre('Drill')">Drill</button>
-            <button onclick="filterGenre('Arbantone')">Arbantone</button>
-            <button onclick="filterGenre('Soul')">Soul</button>
+            <button class="nav-btn active" onclick="filterGenre('All', this)">ALL</button>
+            <button class="nav-btn" onclick="filterGenre('Drill', this)">DRILL</button>
+            <button class="nav-btn" onclick="filterGenre('Arbantone', this)">ARBANTONE</button>
+            <button class="nav-btn" onclick="filterGenre('Soul', this)">SOUL</button>
         </nav>
     </header>
 
     <main id="main-content">
         <section class="hero">
             <h1>Top 10 Street Heat</h1>
-            <p>Scouting the next generation of 254 hits.</p>
+            <p>Nairobi's underground charts live.</p>
         </section>
         
         <div class="chart-wrapper" id="chartList"></div>
 
         <section class="submit-section">
-            <h3>Found a hit?</h3>
-            <button class="submit-btn" onclick="window.location.href='mailto:hitcityradio@example.com'">SUBMIT VIA EMAIL</button>
+            <p>Know a hit we missed?</p>
+            <button class="submit-btn" onclick="window.location.href='mailto:hitcityradio@gmail.com'">SUBMIT A TRACK</button>
         </section>
     </main>
 
-    <audio id="mainPlayer" src="https://shaincast.caster.fm:2199/tunein/morcast.pls" preload="none"></audio>
+    <audio id="mainPlayer" preload="none" crossorigin="anonymous"></audio>
 
     <footer id="player-bar">
         <div class="np-info">
             <div class="pulse-icon"></div>
             <div class="text-group">
-                <span class="label">ON AIR:</span>
-                <span id="trackTitle">Hit City Live (Morcast)</span>
+                <span class="label">STATUS:</span>
+                <span id="trackTitle">MORCAST LIVE</span>
             </div>
         </div>
         <button class="listen-btn" id="playPauseBtn">LISTEN LIVE</button>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
