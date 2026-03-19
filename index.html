@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hit City Radio | Top 50</title>
+    <title>Hit City Radio | Nairobi 2026</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
 </head>
@@ -13,25 +13,36 @@
             <div class="logo-icon"><span class="big-c">C</span><span class="inner-h">H</span></div>
             <span class="radio-text">radio</span>
         </div>
+        <nav class="genre-nav">
+            <button onclick="filterGenre('All')">All</button>
+            <button onclick="filterGenre('Drill')">Drill</button>
+            <button onclick="filterGenre('Arbantone')">Arbantone</button>
+            <button onclick="filterGenre('Soul')">Soul</button>
+        </nav>
     </header>
 
     <main id="main-content">
         <section class="hero">
-            <h1>Top 50 Underground</h1>
-            <p>Nairobi's streets choose the hits.</p>
+            <h1>Top 10 Street Heat</h1>
+            <p>Scouting the next generation of 254 hits.</p>
         </section>
-        <div class="chart-wrapper" id="chartList">
-            </div>
+        
+        <div class="chart-wrapper" id="chartList"></div>
+
+        <section class="submit-section">
+            <h3>Found a hit?</h3>
+            <button class="submit-btn" onclick="window.location.href='mailto:hitcityradio@example.com'">SUBMIT VIA EMAIL</button>
+        </section>
     </main>
 
-    <audio id="mainPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+    <audio id="mainPlayer" src="https://shaincast.caster.fm:2199/tunein/morcast.pls" preload="none"></audio>
 
     <footer id="player-bar">
         <div class="np-info">
             <div class="pulse-icon"></div>
             <div class="text-group">
                 <span class="label">ON AIR:</span>
-                <span id="trackTitle">Hit City Live</span>
+                <span id="trackTitle">Hit City Live (Morcast)</span>
             </div>
         </div>
         <button class="listen-btn" id="playPauseBtn">LISTEN LIVE</button>
