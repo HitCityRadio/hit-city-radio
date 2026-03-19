@@ -13,8 +13,12 @@ const undergroundHits = [
 
 function loadChart(filter = 'All') {
     const list = document.getElementById('chartList');
-    if (!list) return;
+    if (!list) {
+        console.error("Error: Could not find chartList div!");
+        return;
+    }
     const filtered = filter === 'All' ? undergroundHits : undergroundHits.filter(s => s.genre === filter);
+    
     list.innerHTML = filtered.map(song => `
         <div class="song-card">
             <div class="song-meta">
@@ -22,7 +26,7 @@ function loadChart(filter = 'All') {
                 <span class="artist-name">${song.artist}</span>
                 <span class="district">${song.genre} District</span>
             </div>
-            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voting for ${song.title}!')">VOTE</button>
+            <button class="nav-btn" style="color:white; font-size:10px;" onclick="alert('Voted for ${song.title}!')">VOTE</button>
         </div>
     `).join('');
 }
@@ -33,35 +37,24 @@ function filterGenre(genre, btn) {
     loadChart(genre);
 }
 
+// THIS PART RUNS AS SOON AS THE PAGE LOADS
 document.addEventListener('DOMContentLoaded', () => {
     loadChart();
     const audio = document.getElementById('mainPlayer');
     const playBtn = document.getElementById('playPauseBtn');
-    const statusText = document.getElementById('trackTitle');
-
-    // The stream URL - Caster.fm Free requires this specific port/path
-    const STREAM_URL = "https://shaincast.caster.fm:2199/tunein/morcast.mp3";
 
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
-            // Add timestamp to prevent "silent" cached stream
-            audio.src = STREAM_URL + "?t=" + new Date().getTime();
-            statusText.innerText = "CONNECTING...";
-            
+            audio.src = "https://shaincast.caster.fm:2199/tunein/morcast.mp3?t=" + new Date().getTime();
             audio.play().then(() => {
                 playBtn.innerText = "PAUSE";
-                statusText.innerText = "MORCAST LIVE 🔊";
-                playBtn.style.background = "#222";
-            }).catch(e => {
-                statusText.innerText = "OFFLINE";
-                alert("Station is Offline. Make sure your Caster.fm Dashboard is 'Online' and you are broadcasting!");
-            });
+                document.getElementById('trackTitle').innerText = "MORCAST LIVE";
+            }).catch(() => alert("Stream Offline. Start Caster.fm!"));
         } else {
             audio.pause();
-            audio.src = ""; 
+            audio.src = "";
             playBtn.innerText = "LISTEN LIVE";
-            statusText.innerText = "MORCAST STANDBY";
-            playBtn.style.background = "#E63946";
+            document.getElementById('trackTitle').innerText = "MORCAST STANDBY";
         }
     });
 });
