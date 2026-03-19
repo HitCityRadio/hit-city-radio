@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hit City Radio | Nairobi 2026</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hit City Radio | Nairobi</title>
+    <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <header>
@@ -21,13 +22,15 @@
         </nav>
     </header>
 
-    <main id="main-content">
+    <main>
         <section class="hero">
             <h1>Top 10 Street Heat</h1>
             <p>Nairobi's underground charts live.</p>
         </section>
         
-        <div class="chart-wrapper" id="chartList"></div>
+        <div id="chartList" class="chart-wrapper">
+            <p style="text-align:center; color:#444;">Loading Nairobi's Finest...</p>
+        </div>
 
         <section class="submit-section">
             <p>Know a hit we missed?</p>
@@ -47,7 +50,5 @@
         </div>
         <button class="listen-btn" id="playPauseBtn">LISTEN LIVE</button>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
