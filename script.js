@@ -1,28 +1,25 @@
-window.addEventListener('load', () => {
-    const audio = document.getElementById('mainPlayer');
-    const playBtn = document.getElementById('playPauseBtn');
-    const statusText = document.getElementById('trackTitle');
+// MORCAST HIT CITY - MAIN LOGIC 2026
+const undergroundHits = [
+    { rank: 1, title: "Nairobi Nightlife", artist: "DJ Mor", plays: 1502 },
+    { rank: 2, title: "Cloud Nine", artist: "Skipper", plays: 1340 },
+    // ... add your other 8 hits here
+];
 
-    playBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            // Updated with your specific host, port, and mount point
-            audio.src = "https://morcast.caster.fm:13754/xlK6B?t=" + new Date().getTime();
-            
-            statusText.innerText = "TUNING IN...";
-            
-            audio.play().then(() => {
-                playBtn.innerText = "PAUSE";
-                statusText.innerText = "HIT CITY LIVE 🔊";
-            }).catch(e => {
-                console.error("Connection failed:", e);
-                statusText.innerText = "OFFLINE";
-                alert("The station is currently offline. Is your BUTT app connected?");
-            });
-        } else {
-            audio.pause();
-            audio.src = ""; 
-            playBtn.innerText = "LISTEN LIVE";
-            statusText.innerText = "MORCAST STANDBY";
-        }
-    });
+function loadChart() {
+    const chartList = document.getElementById('chart-list');
+    if (!chartList) return;
+    
+    chartList.innerHTML = undergroundHits.map(song => `
+        <div class="chart-item">
+            <span class="rank">#${song.rank}</span>
+            <span class="details"><strong>${song.title}</strong> - ${song.artist}</span>
+            <span class="plays">${song.plays} streams</span>
+        </div>
+    `).join('');
+}
+
+// Run on Load
+window.addEventListener('load', () => {
+    loadChart();
+    console.log("Hit City Radio: System Online");
 });
