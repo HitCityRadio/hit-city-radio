@@ -1,37 +1,4 @@
-const undergroundHits = [
-    { rank: 1, artist: "Xenia Manasseh", title: "Sad Sad Sad", genre: "Soul" },
-    { rank: 2, artist: "Kahush", title: "Skeletons In The Closet", genre: "Soul" },
-    { rank: 3, artist: "SHLM ft. KamaWho", title: "Nairobian Girl", genre: "Arbantone" },
-    { rank: 4, artist: "2wentysixx", title: "Wewe Ni Wangu", genre: "Soul" },
-    { rank: 5, artist: "Ocho Madness", title: "Melanin", genre: "Drill" },
-    { rank: 6, artist: "Badman Select x Ocho Madness", title: "Party Ni Party", genre: "Arbantone" },
-    { rank: 7, artist: "Lengmann ft. Mad Mac", title: "Frustration", genre: "Drill" },
-    { rank: 8, artist: "Toxic Lyrikali", title: "Backbencher", genre: "Drill" },
-    { rank: 9, artist: "Frrmbanya", title: "Unspoken", genre: "Arbantone" },
-    { rank: 10, artist: "Zaituni", title: "Tamu", genre: "Soul" }
-];
-
-function loadChart(filter = 'All') {
-    const list = document.getElementById('chartList');
-    if (!list) return;
-    const filtered = filter === 'All' ? undergroundHits : undergroundHits.filter(s => s.genre === filter);
-    list.innerHTML = filtered.map(song => `
-        <div class="song-card">
-            <div class="song-meta">
-                <span class="song-title">${song.rank}. ${song.title}</span>
-                <span class="artist-name">${song.artist}</span>
-                <span class="district">${song.genre} District</span>
-            </div>
-            <button class="nav-btn" style="color:white; font-size:10px;">VOTE</button>
-        </div>
-    `).join('');
-}
-
-function filterGenre(genre, btn) {
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    loadChart(genre);
-}
+// ... (keep your undergroundHits list at the top) ...
 
 window.addEventListener('load', () => {
     loadChart();
@@ -41,8 +8,9 @@ window.addEventListener('load', () => {
 
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
-            // The 2026 Secure Proxy for morcast
+            // Updated Secure Stream URL for 'morcast'
             audio.src = "https://shaincast.caster.fm:2199/listen.mp3?endpoint=morcast&t=" + new Date().getTime();
+            
             statusText.innerText = "TUNING IN...";
             
             audio.play().then(() => {
@@ -50,8 +18,9 @@ window.addEventListener('load', () => {
                 statusText.innerText = "MORCAST LIVE 🔊";
                 playBtn.style.background = "#222";
             }).catch(e => {
+                console.error("Stream Error:", e);
                 statusText.innerText = "OFFLINE";
-                alert("Stream Offline. Make sure your Caster.fm Dashboard is 'ON-AIR' and BUTT is connected!");
+                alert("Radio is Offline. 1. Open your 'morcast' Broadcaster. 2. Hit Connect. 3. Play Music!");
             });
         } else {
             audio.pause();
