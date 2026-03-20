@@ -14,9 +14,7 @@ const undergroundHits = [
 function loadChart(filter = 'All') {
     const list = document.getElementById('chartList');
     if (!list) return;
-
     const filtered = filter === 'All' ? undergroundHits : undergroundHits.filter(s => s.genre === filter);
-    
     list.innerHTML = filtered.map(song => `
         <div class="song-card">
             <div class="song-meta">
@@ -35,25 +33,32 @@ function filterGenre(genre, btn) {
     loadChart(genre);
 }
 
-// Initialize
 window.addEventListener('load', () => {
     loadChart();
-    
     const audio = document.getElementById('mainPlayer');
     const playBtn = document.getElementById('playPauseBtn');
+    const statusText = document.getElementById('trackTitle');
 
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
-            audio.src = "https://shaincast.caster.fm:2199/tunein/morcast.mp3?t=" + new Date().getTime();
+            // The 2026 Secure Proxy for morcast
+            audio.src = "https://shaincast.caster.fm:2199/listen.mp3?endpoint=morcast&t=" + new Date().getTime();
+            statusText.innerText = "TUNING IN...";
+            
             audio.play().then(() => {
                 playBtn.innerText = "PAUSE";
-                document.getElementById('trackTitle').innerText = "MORCAST LIVE";
-            }).catch(() => alert("Stream Offline. Start your Broadcaster app!"));
+                statusText.innerText = "MORCAST LIVE 🔊";
+                playBtn.style.background = "#222";
+            }).catch(e => {
+                statusText.innerText = "OFFLINE";
+                alert("Stream Offline. Make sure your Caster.fm Dashboard is 'ON-AIR' and BUTT is connected!");
+            });
         } else {
             audio.pause();
-            audio.src = "";
+            audio.src = ""; 
             playBtn.innerText = "LISTEN LIVE";
-            document.getElementById('trackTitle').innerText = "MORCAST STANDBY";
+            statusText.innerText = "MORCAST STANDBY";
+            playBtn.style.background = "#E63946";
         }
     });
 });
