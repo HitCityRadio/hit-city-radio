@@ -1,17 +1,40 @@
-<div id="radio-player" style="text-align: center; background: #1a1a1a; padding: 20px; border-radius: 15px; border: 2px solid #E63946;">
-    <h2 style="color: #E63946; font-family: 'Orbitron', sans-serif; letter-spacing: 2px;">MORCAST LIVE</h2>
-    
-    <div data-type="newStreamPlayer" 
-         data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" 
-         data-theme="dark" 
-         data-color="e63946" 
-         data-rendered="false" 
-         class="cstrEmbed">
-        <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-        <a href="https://www.caster.fm">Stream Hosting</a> 
-        <a href="https://www.caster.fm">Radio Server Hosting</a>
-    </div>
-    <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morcast | Hit City Radio</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #0a0a0a; color: white; font-family: 'Orbitron', sans-serif;">
 
-    <p style="color: #888; font-size: 12px; margin-top: 10px;">Direct from Nairobi • 24/7 Underground Hits</p>
-</div>
+    <header style="text-align: center; padding: 40px 20px;">
+        <h1 style="color: #E63946; font-size: 3rem; margin: 0;">HIT CITY RADIO</h1>
+        <p style="letter-spacing: 5px; color: #888;">NAIROBI UNDERGROUND</p>
+    </header>
+
+    <main style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        
+        <div id="radio-section" style="background: #1a1a1a; padding: 30px; border-radius: 20px; border: 2px solid #E63946; margin-bottom: 40px; text-align: center;">
+            <div data-type="newStreamPlayer" 
+                 data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" 
+                 data-theme="dark" data-color="e63946" data-rendered="false" class="cstrEmbed">
+                <a href="https://www.caster.fm">Shoutcast Hosting</a> 
+                <a href="https://www.caster.fm">Stream Hosting</a> 
+                <a href="https://www.caster.fm">Radio Server Hosting</a>
+            </div>
+            <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+        </div>
+
+        <section id="charts">
+            <h2 style="border-bottom: 2px solid #E63946; padding-bottom: 10px;">TOP 10 HITS</h2>
+            <div id="chart-list">
+                </div>
+        </section>
+
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>
