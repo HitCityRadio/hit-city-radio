@@ -3,43 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morcast | Hit City Radio</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>HIT CITY RADIO | Morcast</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body style="background-color: #0a0a0a; color: white; font-family: 'Orbitron', sans-serif;">
-
-    <header style="text-align: center; padding: 40px 20px;">
-        <h1 style="color: #E63946; font-size: 3rem; margin: 0;">HIT CITY RADIO</h1>
-        <p style="letter-spacing: 5px; color: #888;">NAIROBI UNDERGROUND</p>
-    </header>
-
-    <main style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <style>
+        body { background: #0a0a0a; color: white; font-family: 'Orbitron', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: 0 auto; }
+        h1 { color: #E63946; font-size: 2.5rem; letter-spacing: 4px; margin-bottom: 5px; }
+        .sub-header { color: #888; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 30px; }
         
-       <div id="radio-player" style="text-align: center; background: #1a1a1a; padding: 20px; border-radius: 15px; border: 2px solid #E63946;">
-    <h2 style="color: #E63946; font-family: 'Orbitron', sans-serif;">MORCAST LIVE</h2>
-    
-    <div data-type="newStreamPlayer" 
-         data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" 
-         data-theme="dark" 
-         data-color="e63946" 
-         data-rendered="false" 
-         class="cstrEmbed">
-        <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-        <a href="https://www.caster.fm">Stream Hosting</a> 
-        <a href="https://www.caster.fm">Radio Server Hosting</a>
+        #player-box { 
+            background: #151515; border: 2px solid #E63946; padding: 25px; 
+            border-radius: 20px; box-shadow: 0 0 20px rgba(230, 57, 70, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .chart-card { background: #111; border-radius: 15px; padding: 15px; margin-top: 20px; text-align: left; }
+        .chart-item { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid #222; }
+        .rank { color: #E63946; font-weight: bold; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>HIT CITY RADIO</h1>
+        <div class="sub-header">NAIROBI UNDERGROUND • 24/7 LIVE</div>
+
+        <div id="player-box">
+            <div data-type="newStreamPlayer" 
+                 data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" 
+                 data-theme="dark" data-color="e63946" data-rendered="false" class="cstrEmbed">
+                <a href="https://www.caster.fm">Shoutcast Hosting</a> 
+                <a href="https://www.caster.fm">Stream Hosting</a> 
+                <a href="https://www.caster.fm">Radio Server Hosting</a>
+            </div>
+            <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+        </div>
+
+        <div class="chart-card">
+            <h3 style="color: #E63946; margin-top: 0;">TOP 10 UNDERGROUND</h3>
+            <div id="chart-content"></div>
+        </div>
     </div>
-    <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
-</div>
 
-        <section id="charts">
-            <h2 style="border-bottom: 2px solid #E63946; padding-bottom: 10px;">TOP 10 HITS</h2>
-            <div id="chart-list">
-                </div>
-        </section>
+    <script>
+        const hits = [
+            { r: 1, t: "Nairobi Nightlife", a: "DJ Mor" },
+            { r: 2, t: "Cloud Nine", a: "Skipper" },
+            { r: 3, t: "Rally Vibes", a: "WRC Mix" },
+            { r: 4, t: "Flood Zone", a: "City Beats" }
+        ];
 
-    </main>
-
-    <script src="./script.js"></script>
+        document.getElementById('chart-content').innerHTML = hits.map(s => `
+            <div class="chart-item">
+                <span><span class="rank">#${s.r}</span> ${s.t}</span>
+                <span style="color: #666;">${s.a}</span>
+            </div>
+        `).join('');
+    </script>
 </body>
 </html>
