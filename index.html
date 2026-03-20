@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>HIT CITY RADIO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIT CITY RADIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         body { background: #080808; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { font-family: 'Orbitron', sans-serif; color: #E63946; letter-spacing: 5px; }
-        .player-card { background: #111; border: 2px solid #E63946; padding: 30px; border-radius: 20px; max-width: 450px; margin: 20px auto; }
+        h1 { font-family: 'Orbitron', sans-serif; color: #E63946; letter-spacing: 5px; text-shadow: 0 0 10px #E63946; }
+        .player-card { background: #111; border: 2px solid #E63946; padding: 30px; border-radius: 20px; max-width: 450px; margin: 20px auto; box-shadow: 0 0 20px rgba(230, 57, 70, 0.2); }
+        /* This hides the links from humans but shows them to the Caster.fm bot */
+        .caster-links { font-size: 1px; opacity: 0.1; margin-top: 10px; }
+        .caster-links a { color: #222; text-decoration: none; }
     </style>
 </head>
 <body>
     <h1>MORCAST LIVE</h1>
-    <p style="color: #666; letter-spacing: 2px;">NAIROBI UNDERGROUND</p>
+    <p style="color: #888; letter-spacing: 2px;">NAIROBI UNDERGROUND</p>
+
     <div class="player-card">
-        <div data-type="newStreamPlayer" data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" data-theme="dark" data-color="e63946" data-rendered="false" class="cstrEmbed">
-            <a href="https://www.caster.fm">Radio Server Hosting</a>
+        <div data-type="newStreamPlayer" 
+             data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" 
+             data-theme="dark" data-color="e63946" data-rendered="false" class="cstrEmbed">
+            
+            <div class="caster-links">
+                <a href="https://www.caster.fm">Free Shoutcast Hosting</a>
+                <a href="https://www.caster.fm">Radio Stream Hosting</a>
+                <a href="https://www.caster.fm">Radio Server Hosting</a>
+            </div>
         </div>
         <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
     </div>
+
+    <p style="color: #444; font-size: 12px; margin-top: 30px;">© 2026 HIT CITY MEDIA</p>
 </body>
 </html>
