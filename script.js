@@ -6,10 +6,13 @@ window.addEventListener('load', () => {
     const playBtn = document.getElementById('playPauseBtn');
     const statusText = document.getElementById('trackTitle');
 
+    // YOUR UNIQUE CLOUD TOKEN
+    const publicToken = "7b28ffe0-7b66-4372-8f39-c8215fe4cc01";
+
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
-            // Updated Secure Stream URL for 'morcast'
-            audio.src = "https://shaincast.caster.fm:2199/listen.mp3?endpoint=morcast&t=" + new Date().getTime();
+            // This URL uses your Public Token to find your live stream automatically
+            audio.src = `https://hub.cloud.caster.fm/stream/${publicToken}/?t=${new Date().getTime()}`;
             
             statusText.innerText = "TUNING IN...";
             
@@ -20,7 +23,7 @@ window.addEventListener('load', () => {
             }).catch(e => {
                 console.error("Stream Error:", e);
                 statusText.innerText = "OFFLINE";
-                alert("Radio is Offline. 1. Open your 'morcast' Broadcaster. 2. Hit Connect. 3. Play Music!");
+                alert("Radio is Offline. Please ensure your Broadcaster app says 'Connected'!");
             });
         } else {
             audio.pause();
