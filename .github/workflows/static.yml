@@ -2,17 +2,10 @@ name: Deploy Hit City Radio
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   deploy:
     environment:
@@ -21,14 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v6 # Updated for Node 24 support
-
+        uses: actions/checkout@v6 
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v5
-
       - name: Upload Artifact 📦
-        uses: actions/upload-pages-artifact@v3 # Using the latest stable for Pages
-
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Tells GitHub your files are in the main folder
       - name: Deploy to GitHub Pages 🚀
         id: deployment
-        uses: actions/deploy-pages@v5 # Updated for Node 24 support
+        uses: actions/deploy-pages@v5
