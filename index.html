@@ -3,35 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIT CITY RADIO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body { background: #080808; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { font-family: 'Orbitron', sans-serif; color: #E63946; letter-spacing: 5px; text-shadow: 0 0 10px #E63946; }
-        .player-card { background: #111; border: 2px solid #E63946; padding: 30px; border-radius: 20px; max-width: 450px; margin: 20px auto; box-shadow: 0 0 20px rgba(230, 57, 70, 0.2); }
-        /* This hides the links from humans but shows them to the Caster.fm bot */
-        .caster-links { font-size: 1px; opacity: 0.1; margin-top: 10px; }
-        .caster-links a { color: #222; text-decoration: none; }
-    </style>
+    <title>Hit City Radio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
-    <h1>MORCAST LIVE</h1>
-    <p style="color: #888; letter-spacing: 2px;">NAIROBI UNDERGROUND</p>
-
-    <div class="player-card">
-        <div data-type="newStreamPlayer" 
-             data-publicToken="7b28ffe0-7b66-4372-8f39-c8215fe4cc01" 
-             data-theme="dark" data-color="e63946" data-rendered="false" class="cstrEmbed">
-            
-            <div class="caster-links">
-                <a href="https://www.caster.fm">Free Shoutcast Hosting</a>
-                <a href="https://www.caster.fm">Radio Stream Hosting</a>
-                <a href="https://www.caster.fm">Radio Server Hosting</a>
-            </div>
+    <header>
+        <h1>Welcome to Hit City Radio</h1>
+        <button id="toggle-theme">Toggle Dark/Light Mode</button>
+    </header>
+    <main>
+        <div id="audio-player">
+            <audio controls>
+                <source src="your-audio-file.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5">
         </div>
-        <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
-    </div>
+        <div id="real-time-chat">
+            <h2>Chat</h2>
+            <ul id="messages"></ul>
+            <input id="message-input" type="text">
+            <button id="send-button">Send</button>
+        </div>
+        <div id="song-queue">
+            <h2>Song Queue</h2>
+            <ul id="queue-list"></ul>
+        </div>
+    </main>
+    <footer>
+        <p>Hit City Radio &copy; 2026</p>
+    </footer>
+    <script>
+        // Configuration constants
+        const VOLUME_DEFAULT = 0.5;
 
-    <p style="color: #444; font-size: 12px; margin-top: 30px;">© 2026 HIT CITY MEDIA</p>
+        // Error handling utility
+        function handleError(error) {
+            console.error('An error occurred:', error);
+        }
+
+        // Initialize the audio player
+        const audioPlayer = document.querySelector('audio');
+        audioPlayer.volume = VOLUME_DEFAULT;
+
+        // Volume control
+        document.getElementById('volume-control').addEventListener('input', function() {
+            audioPlayer.volume = this.value;
+        });
+
+        // Sample chat implementation
+        document.getElementById('send-button').addEventListener('click', function() {
+            const messageInput = document.getElementById('message-input');
+            if (messageInput.value) {
+                const messageElement = document.createElement('li');
+                messageElement.textContent = messageInput.value;
+                document.getElementById('messages').appendChild(messageElement);
+                messageInput.value = '';
+            }
+        });
+
+        // Dark/light mode toggle
+        document.getElementById('toggle-theme').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
 </body>
 </html>
